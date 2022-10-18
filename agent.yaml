@@ -1,0 +1,31 @@
+server:
+  log_level: info
+logs:
+  configs:
+    - name: default
+      positions:
+        filename: /tmp/positions.yaml
+      scrape_configs:
+        - job_name: app
+          static_configs:
+            - targets:
+                - localhost
+              labels:
+                job: app
+                __path__: /var/log/app.log
+      clients:
+        - url: replace me!!!!!!!!!!!!!
+metrics:
+  global:
+    scrape_interval: 60s
+  configs:
+    - name: hosted-prometheus
+      scrape_configs:
+        - job_name: app
+          static_configs:
+            - targets: ['app:8000']
+      remote_write:
+        - url: replace me!!!!!!!!!!!!!
+          basic_auth:
+            username: replace me!!!!!!!!!!!!!
+            password: replace me!!!!!!!!!!!!!

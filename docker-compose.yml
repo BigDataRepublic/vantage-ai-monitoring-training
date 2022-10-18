@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    volumes:
+      - logs:/var/log
+    ports:
+      - "8000:8000"
+  agent:
+    image: grafana/agent:v0.28.0
+    volumes:
+      - ${PWD}/agent.yaml:/etc/agent/agent.yaml
+      - logs:/var/log
+volumes:
+  logs: {}
